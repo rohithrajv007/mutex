@@ -1,0 +1,80 @@
+Here's a sample **README.md** file you can use for your Mutex Media Tools project:
+
+---
+
+# 🎬 Mutex Media Tools
+
+A Flask-based web application that allows users to **extract audio** from videos or **replace a video’s audio track** entirely. This tool is perfect for content creators, educators, and developers looking for quick in-browser media editing capabilities.
+
+## 🔧 Features
+
+- 🎵 **Audio Extractor**:  
+  Upload a video and extract its audio as a `.wav` file.
+
+- 🔁 **Audio Replacer**:  
+  Replace the audio in a video file with a new audio track. Supports trimming and previewing before download.
+
+- 💡 **Simple Interface**:  
+  Drag-and-drop support, inline previews, and download links for results.
+
+- 🔒 **Secure & Session-based**:  
+  Each operation uses a unique session ID and isolates file processing.
+
+- 📁 Organized File Handling:  
+  Files are saved in structured folders (`uploads/`, `audio/`, `processed/`).
+
+- 📜 **Robust Logging & Error Handling**:  
+  Logs every operation and handles missing files or system errors gracefully.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- `pip` package manager
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run the App
+
+```bash
+python app.py
+```
+
+Then open your browser and go to `http://localhost:5000`
+
+## 📁 Folder Structure
+
+```
+├── app.py
+├── static/
+│   └── styles.css
+├── templates/
+│   ├── index.html
+│   ├── replace.html
+│   └── error.html
+├── uploads/
+├── audio/
+├── processed/
+├── logs/
+│   └── operations.log
+└── requirements.txt
+```
+
+## 🛠️ Built With
+
+- [Flask](https://flask.palletsprojects.com/)
+- [MoviePy](https://zulko.github.io/moviepy/)
+- [HTML/CSS/JavaScript](https://developer.mozilla.org/en-US/)
+
+
+
+## ✨ Acknowledgments
+
+Developed as a utility to simplify basic media operations using Python, Flask, and MoviePy.
+
+---

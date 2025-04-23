@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Media tools for extracting and replacing audio in video files">
+    <meta name="author" content="Yathindra T M">
+    <title>{{ company_name }} - Media Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="https://img.freepik.com/premium-vector/no-hate-speech-sign-stop-social-negative-word-concept-protest-symbol-vector-10-eps_824631-3205.jpg" type="image/x-icon">
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>{{ company_name }}</h1>
+        </div>
+        <nav aria-label="Main Navigation">
+            <ul role="menubar">
+                <li role="none"><a href="#extractor" class="active" data-target="extractor" role="menuitem" aria-current="page">Audio Extractor</a></li>
+                <li role="none"><a href="#replacer" data-target="replacer" role="menuitem">Audio Replacer</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="extractor" class="tool-section active" aria-labelledby="extractor-heading">
+            <div class="container">
+                <h2 id="extractor-heading">Audio Extractor</h2>
+                <p>Extract audio from your video files with one click</p>
+                
+                <div class="upload-container" id="extractor-upload">
+                    <div class="upload-area" id="extractor-dropzone" role="button" tabindex="0" aria-label="Drop zone for video files">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <h3>Drag & Drop your video here</h3>
+                        <p>or</p>
+                        <label for="extractor-file-input" class="custom-file-upload">Select File</label>
+                        <input type="file" id="extractor-file-input" accept="video/*" aria-label="Select video file for extraction" />
+                    </div>
+                    <div class="file-info" id="extractor-file-info" style="display: none;">
+                        <div class="file-details">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                            <div>
+                                <span id="extractor-filename">filename.mp4</span>
+                                <span id="extractor-filesize">0 MB</span>
+                            </div>
+                            <button class="remove-btn" id="extractor-remove-file" aria-label="Remove selected file">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <button class="submit-btn" id="extractor-submit">Extract Audio</button>
+                    </div>
+                </div>
+
+                <div class="result-container" id="extractor-result" style="display: none;" aria-live="polite">
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" aria-hidden="true">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                        <h3>Audio Extracted Successfully!</h3>
+                    </div>
+                    <button class="download-btn" id="extractor-download">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download Audio
+                    </button>
+                    <button class="reset-btn" id="extractor-reset">Extract Another</button>
+                </div>
+
+                <div class="loader" id="extractor-loader" style="display: none;" aria-live="polite">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <p>Extracting audio...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="replacer" class="tool-section" aria-labelledby="replacer-heading">
+            <div class="container">
+                <h2 id="replacer-heading">Audio Replacer</h2>
+                <p>Replace the audio in your video with a new audio track</p>
+
+                <div class="stepper" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Upload Video</div>
+                    </div>
+                    <div class="step-line" aria-hidden="true"></div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Upload Audio</div>
+                    </div>
+                    <div class="step-line" aria-hidden="true"></div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Download</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Video Upload -->
+                <div class="step-content active" id="step-1">
+                    <div class="upload-container">
+                        <div class="upload-area" id="video-dropzone" role="button" tabindex="0" aria-label="Drop zone for video files">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                            <h3>Drag & Drop your video here</h3>
+                            <p>or</p>
+                            <label for="video-file-input" class="custom-file-upload">Select Video</label>
+                            <input type="file" id="video-file-input" accept="video/*" required aria-label="Select video file for audio replacement" />
+                        </div>
+                        <div class="file-info" id="video-file-info" style="display: none;">
+                            <div class="file-details">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                                <div>
+                                    <span id="video-filename">filename.mp4</span>
+                                    <span id="video-filesize">0 MB</span>
+                                </div>
+                                <button class="remove-btn" id="video-remove-file" aria-label="Remove selected video file">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
+                            </div>
+                            <button class="submit-btn" id="video-submit">Continue</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Audio Upload -->
+                <div class="step-content" id="step-2" style="display: none;">
+                    <div class="upload-container">
+                        <div class="upload-area" id="audio-dropzone" role="button" tabindex="0" aria-label="Drop zone for audio files">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                            <h3>Drag & Drop your audio here</h3>
+                            <p>or</p>
+                            <label for="audio-file-input" class="custom-file-upload">Select Audio</label>
+                            <input type="file" id="audio-file-input" accept="audio/*" required aria-label="Select audio file to replace video audio" />
+                        </div>
+                        <div class="file-info" id="audio-file-info" style="display: none;">
+                            <div class="file-details">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                                <div>
+                                    <span id="audio-filename">filename.mp3</span>
+                                    <span id="audio-filesize">0 MB</span>
+                                </div>
+                                <button class="remove-btn" id="audio-remove-file" aria-label="Remove selected audio file">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
+                            </div>
+                            <button class="submit-btn" id="audio-submit">Replace Audio</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview and Download -->
+                <div class="step-content" id="step-3" style="display: none;">
+                    <div class="preview-container">
+                        <h3>Video Preview</h3>
+                        <div class="video-wrapper">
+                            <video id="preview-video" controls aria-label="Preview of video with replaced audio">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="download-btn" id="video-download">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Download Video
+                            </button>
+                            <button class="reset-btn" id="video-reset">Start Over</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loader" id="replacer-loader" style="display: none;" aria-live="polite">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <p>Processing video...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 {{ company_name }} - All rights reserved to VARY</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

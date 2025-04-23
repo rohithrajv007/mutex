@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }} - Video Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .preview-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .video-wrapper {
+            width: 100%;
+            margin: 20px 0;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>{{ company_name }}</h1>
+        </div>
+    </header>
+
+    <div class="preview-container">
+        <h2>Video Preview</h2>
+        <div class="video-wrapper">
+            <video controls autoplay>
+                <source src="{{ video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="action-buttons">
+            <a href="{{ url_for('download_audio', session_id=session_id) }}">
+                <button class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Video
+                </button>
+            </a>
+            <a href="{{ url_for('index') }}">
+                <button class="reset-btn">Back to Home</button>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 {{ company_name }} - All rights reserved</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found">
+    <meta name="author" content="Yathindra T M">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header .logo h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            background-color: #fff;
+        }
+
+        #error {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        #error h2 {
+            font-size: 3em;
+            color: #ff4d4d;
+            margin-bottom: 20px;
+        }
+
+        #error p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .go-home-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .go-home-btn:hover {
+            background-color: #ff4d4d;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>{{ company_name }}</h1>
+        </div>
+        <nav aria-label="Main Navigation">
+            <ul role="menubar">
+                <li role="none"><a href="/" role="menuitem" aria-current="page">Home</a></li>
+                <li role="none"><a href="#extractor" data-target="extractor" role="menuitem">Audio Extractor</a></li>
+                <li role="none"><a href="#replacer" data-target="replacer" role="menuitem">Audio Replacer</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="error" class="error-section">
+            <div class="container">
+                <h2>404 - Page Not Found</h2>
+                <p>Sorry, the page you are looking for does not exist.</p>
+                <p>It might have been moved or deleted.</p>
+                <a href="/" class="go-home-btn">Go to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; {{ company_name }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>

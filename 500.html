@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #434343, #000000);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-box h1 {
+            font-size: 5em;
+            color: #ff4d4d;
+        }
+
+        .error-box h2 {
+            margin-top: 10px;
+            font-size: 2em;
+        }
+
+        .error-box p {
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1em;
+            text-decoration: none;
+            background: #ff4d4d;
+            color: white;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .home-link:hover {
+            background: #ff1a1a;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <h1>500</h1>
+        <h2>Oops! Something went wrong.</h2>
+        <p>We're experiencing an internal server issue.<br>
+           Please try again later or go back to the homepage.</p>
+        <a href="/" class="home-link">Return Home</a>
+    </div>
+    <footer>
+        &copy; {{ company_name }}. All rights reserved.
+    </footer>
+</body>
+</html>
